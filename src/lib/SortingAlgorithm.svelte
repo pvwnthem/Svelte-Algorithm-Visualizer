@@ -20,6 +20,7 @@
     isSorting = false;
   }
 
+  console.log(selectedAlgorithm.code )
   function resetArray() {
     originalArray = generateRandomArray(arrayLength);
     sortedArray = originalArray;
@@ -78,6 +79,14 @@
         ></div>
       {/each}
     </div>
+    <div class="container2">
+      <pre>
+      <code class="">
+      {selectedAlgorithm.code}
+    </code>
+  </pre>
+    </div>
+    
   </div>
 
 <style>
@@ -85,6 +94,18 @@
     margin: 20px auto;
     padding: 20px;
     max-width: 75%;
+  }
+
+  .containter2 {
+    direction: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    text-align: center;
+  } 
+
+  code {
+    text-align: center;
   }
 
   @media (max-width: 768px) {
@@ -111,6 +132,22 @@
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
+  }
+
+  .container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  pre {
+    white-space: pre-wrap;
+    text-align: left;
+  }
+  
+  code {
+    white-space: pre-wrap;
   }
 
   button {
