@@ -3,21 +3,23 @@
   import SelectionSort from "../algorithms/sorting/SelectionSort";
   import { onMount } from 'svelte';
 
-  let originalArray = generateRandomArray(30);
+  let arrayLength = 30;
+  let originalArray = generateRandomArray(arrayLength);
   let sortedArray = [];
   let currentIndex = 0;
   let isSorting = false;
+  let animate = true;
   let selectedAlgorithm = BubbleSort;
 
   async function startSorting() {
     isSorting = true;
     currentIndex = 0;
-    sortedArray = await selectedAlgorithm.animate([...originalArray], updateArray);
+    sortedArray = animate ? await selectedAlgorithm.animate([...originalArray], updateArray) : await selectedAlgorithm.run([...originalArray]);
     isSorting = false;
   }
 
   function resetArray() {
-    originalArray = generateRandomArray(30);
+    originalArray = generateRandomArray(arrayLength);
     sortedArray = originalArray;
     currentIndex = 0;
     isSorting = false;
@@ -46,7 +48,11 @@
     <option value={BubbleSort}>Bubble Sort</option>
     <option value={SelectionSort}>Selection Sort</option>
   </select>
-  <button on:click={startSorting} disabled={isSorting}>
+  <input name="animate" type="checkbox" bind:checked={animate} />
+  <label for="animate">Animate</label>
+  <label for="array-length">Array Length:</label>
+  <input name="array-length" type="range" min="10" max="100" step="1" bind:value={arrayLength} on:change={resetArray} />
+  <button on:click={startSorting}>
     {isSorting ? 'Sorting...' : 'Start Sorting'}
   </button>
   <button on:click={resetArray} disabled={isSorting}>
