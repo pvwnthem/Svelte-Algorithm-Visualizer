@@ -1,6 +1,7 @@
 <script lang="ts">
-  import BubbleSort from "../algorithms/sorting/BubbleSort";
   import { onMount } from 'svelte';
+
+  export let sortingAlgorithm;
 
   let originalArray = generateRandomArray(30);
   let sortedArray = [];
@@ -10,7 +11,7 @@
   async function startSorting() {
     isSorting = true;
     currentIndex = 0;
-    sortedArray = await BubbleSort.animate([...originalArray], updateArray);
+    sortedArray = await sortingAlgorithm.animate([...originalArray], updateArray);
     isSorting = false;
   }
 
@@ -50,7 +51,7 @@
     {#each sortedArray as value, index}
       <div
         class={`array-bar ${currentIndex === index ? 'current' : ''}`}
-        style={`height: ${value * 2}px; transition: height 0.01s ease-out;`}
+        style={`height: ${value * 2}px; transition: height 0.1s ease-out;`}
       ></div>
     {/each}
   </div>

@@ -1,7 +1,8 @@
 <script lang="ts">
+    import SelectionSort from "./algorithms/sorting/SelectionSort";
     import SortingAlgorithm from "./lib/SortingAlgorithm.svelte";
 </script>
 
 <main>
-  <SortingAlgorithm />
+  <SortingAlgorithm sortingAlgorithm={SelectionSort} />
 </main>
