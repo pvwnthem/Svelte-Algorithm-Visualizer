@@ -1,17 +1,18 @@
 <script lang="ts">
+  import BubbleSort from "../algorithms/sorting/BubbleSort";
+  import SelectionSort from "../algorithms/sorting/SelectionSort";
   import { onMount } from 'svelte';
-
-  export let sortingAlgorithm;
 
   let originalArray = generateRandomArray(30);
   let sortedArray = [];
   let currentIndex = 0;
   let isSorting = false;
+  let selectedAlgorithm = BubbleSort;
 
   async function startSorting() {
     isSorting = true;
     currentIndex = 0;
-    sortedArray = await sortingAlgorithm.animate([...originalArray], updateArray);
+    sortedArray = await selectedAlgorithm.animate([...originalArray], updateArray);
     isSorting = false;
   }
 
@@ -41,6 +42,10 @@
 </script>
 
 <div>
+  <select bind:value={selectedAlgorithm}>
+    <option value={BubbleSort}>Bubble Sort</option>
+    <option value={SelectionSort}>Selection Sort</option>
+  </select>
   <button on:click={startSorting} disabled={isSorting}>
     {isSorting ? 'Sorting...' : 'Start Sorting'}
   </button>
