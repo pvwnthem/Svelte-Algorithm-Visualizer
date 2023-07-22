@@ -16,7 +16,7 @@
     isSorting = true;
     currentIndex = 0;
     stopSorting = false;
-    sortedArray = animate ? await selectedAlgorithm.animate([...originalArray], updateArray, shouldStopSorting) : await selectedAlgorithm.run([...originalArray]);
+    sortedArray = animate ? await selectedAlgorithm.animate([...originalArray], updateArray, shouldStopSorting) : selectedAlgorithm.run([...originalArray]);
     isSorting = false;
   }
 
