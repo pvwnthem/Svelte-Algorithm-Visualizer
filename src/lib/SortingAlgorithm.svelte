@@ -83,7 +83,13 @@
   .container {
     margin: 20px auto;
     padding: 20px;
-    max-width: 800px;
+    max-width: 75%;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      max-width: 100%;
+    }
   }
 
   .algorithm-select,
@@ -142,7 +148,7 @@
     width: 10px;
     margin: 0 1px;
     background-color: #007bff;
-    transition: height 0.2s ease-out;
+    transition: height 0.1s ease-out;
   }
 
   @media (max-width: 768px) {
