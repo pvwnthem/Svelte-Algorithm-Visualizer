@@ -1,5 +1,6 @@
 <script lang="ts">
   import BubbleSort from "../algorithms/sorting/BubbleSort";
+    import QuickSort from "../algorithms/sorting/QuickSort";
   import SelectionSort from "../algorithms/sorting/SelectionSort";
   import { onMount } from 'svelte';
 
@@ -54,6 +55,7 @@
     <select class="algorithm-select" bind:value={selectedAlgorithm}>
       <option value={BubbleSort}>Bubble Sort</option>
       <option value={SelectionSort}>Selection Sort</option>
+      <option value={QuickSort}>Quick Sort</option>
     </select>
     <input class="checkbox-input" name="animate" type="checkbox" bind:checked={animate} />
     <label class="checkbox-label" for="animate">Animate</label>
