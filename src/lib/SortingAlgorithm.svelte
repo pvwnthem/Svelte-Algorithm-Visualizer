@@ -10,11 +10,13 @@
   let isSorting = false;
   let animate = true;
   let selectedAlgorithm = BubbleSort;
+  let stopSorting = false;
 
   async function startSorting() {
     isSorting = true;
     currentIndex = 0;
-    sortedArray = animate ? await selectedAlgorithm.animate([...originalArray], updateArray) : await selectedAlgorithm.run([...originalArray]);
+    stopSorting = false;
+    sortedArray = animate ? await selectedAlgorithm.animate([...originalArray], updateArray, shouldStopSorting) : await selectedAlgorithm.run([...originalArray]);
     isSorting = false;
   }
 
@@ -38,6 +40,10 @@
     return array;
   }
 
+  function shouldStopSorting() {
+    return stopSorting;
+  }
+
   onMount(() => {
     sortedArray = originalArray;
   });
@@ -52,8 +58,11 @@
   <label for="animate">Animate</label>
   <label for="array-length">Array Length:</label>
   <input name="array-length" type="range" min="10" max="100" step="1" bind:value={arrayLength} on:change={resetArray} />
-  <button on:click={startSorting}>
+  <button on:click={startSorting} disabled={isSorting}>
     {isSorting ? 'Sorting...' : 'Start Sorting'}
+  </button>
+  <button on:click={() => stopSorting = true} disabled={!isSorting}>
+    Stop Sorting
   </button>
   <button on:click={resetArray} disabled={isSorting}>
     Reset Array
