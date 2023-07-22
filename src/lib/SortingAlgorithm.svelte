@@ -49,35 +49,86 @@
   });
 </script>
 
-<div>
-  <select bind:value={selectedAlgorithm}>
-    <option value={BubbleSort}>Bubble Sort</option>
-    <option value={SelectionSort}>Selection Sort</option>
-  </select>
-  <input name="animate" type="checkbox" bind:checked={animate} />
-  <label for="animate">Animate</label>
-  <label for="array-length">Array Length:</label>
-  <input name="array-length" type="range" min="10" max="100" step="1" bind:value={arrayLength} on:change={resetArray} />
-  <button on:click={startSorting} disabled={isSorting}>
-    {isSorting ? 'Sorting...' : 'Start Sorting'}
-  </button>
-  <button on:click={() => stopSorting = true} disabled={!isSorting}>
-    Stop Sorting
-  </button>
-  <button on:click={resetArray} disabled={isSorting}>
-    Reset Array
-  </button>
-  <div class="array-container">
-    {#each sortedArray as value, index}
-      <div
-        class={`array-bar ${currentIndex === index ? 'current' : ''}`}
-        style={`height: ${value * 2}px; transition: height 0.1s ease-out;`}
-      ></div>
-    {/each}
+  <div class="container">
+    <select class="algorithm-select" bind:value={selectedAlgorithm}>
+      <option value={BubbleSort}>Bubble Sort</option>
+      <option value={SelectionSort}>Selection Sort</option>
+    </select>
+    <input class="checkbox-input" name="animate" type="checkbox" bind:checked={animate} />
+    <label class="checkbox-label" for="animate">Animate</label>
+    <label for="array-length">Array Length:</label>
+    <input name="array-length" type="range" min="10" max="100" step="1" bind:value={arrayLength} on:change={resetArray} />
+    <div class="button-container">
+      <button on:click={startSorting} disabled={isSorting}>
+        {isSorting ? 'Sorting...' : 'Start Sorting'}
+      </button>
+      <button on:click={() => stopSorting = true} disabled={!isSorting}>
+        Stop Sorting
+      </button>
+      <button on:click={resetArray} disabled={isSorting}>
+        Reset Array
+      </button>
+    </div>
+    <div class="array-container">
+      {#each sortedArray as value, index}
+        <div
+          class={`array-bar ${currentIndex === index ? 'current' : ''}`}
+          style={`height: ${value * 2}px; transition: height 0.1s ease-out;`}
+        ></div>
+      {/each}
+    </div>
   </div>
-</div>
 
 <style>
+  .container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+  }
+
+  .algorithm-select,
+  .checkbox-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  .checkbox-label {
+    font-size: 16px;
+    margin-right: 20px;
+  }
+
+  .button-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   .array-container {
     display: flex;
     align-items: flex-end;
@@ -91,6 +142,13 @@
     width: 10px;
     margin: 0 1px;
     background-color: #007bff;
+    transition: height 0.2s ease-out;
+  }
+
+  @media (max-width: 768px) {
+    .array-bar {
+      margin: 0 0.5px;
+    }
   }
 
   .current {
