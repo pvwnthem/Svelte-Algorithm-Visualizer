@@ -69,6 +69,7 @@
         Reset Array
       </button>
     </div>
+    <h1>{selectedAlgorithm.name}</h1>
     <div class="array-container">
       {#each sortedArray as value, index}
         <div
@@ -141,7 +142,7 @@
     justify-content: center;
     height: 300px;
     width: 100%;
-    background-color: #f0f0f0;
+    background-color: #242424;
   }
 
   .array-bar {
