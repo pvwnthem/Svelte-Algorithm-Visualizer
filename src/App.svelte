@@ -2,5 +2,4 @@
 </script>
 
 <main>
-  
 </main>
