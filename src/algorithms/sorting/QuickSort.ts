@@ -3,7 +3,7 @@ import SortingAlgorithm from "../SortingAlgorithm";
 export default class QuickSort extends SortingAlgorithm {
 
     static code = `
-    static run = (array: number[]): number[] => {
+    const QuickSort = (array: number[]): number[] => {
         if (array.length <= 1) {
             return array;
           }

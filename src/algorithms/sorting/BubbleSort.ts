@@ -3,7 +3,7 @@ import SortingAlgorithm from "../SortingAlgorithm";
 export default class BubbleSort extends SortingAlgorithm {
 
     static code = `
-    static run = (array: number[]): number[] => {
+    const BubbleSort = (array: number[]): number[] => {
         let swapped = true
         let i = 0
         while (swapped) {

@@ -4,7 +4,7 @@ import SortingAlgorithm from "../SortingAlgorithm";
 export default class SelectionSort extends SortingAlgorithm {
 
     static code = `
-    static run = (array: number[]): number[] => {
+    const SelectionSort = (array: number[]): number[] => {
         for (let i = 0; i < array.length; i++) {
             let min = i
             for (let j = i + 1; j < array.length; j++) {
