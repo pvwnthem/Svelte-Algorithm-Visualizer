@@ -60,12 +60,14 @@
       <option value={QuickSort}>Quick Sort</option>
       <option value={InsertionSort}>Insertion Sort</option>
     </select>
-    <input class="checkbox-input" name="animate" type="checkbox" bind:checked={animate} />
-    <label class="checkbox-label" for="animate">Animate</label>
-    <label for="array-length">Array Length:</label>
-    <input name="array-length" type="range" min="10" max="100" step="1" bind:value={arrayLength} on:change={resetArray} />
-    <label for="animation-delay">Animation Delay:</label>
-    <input name="animation-delay" type="range" min="0" max="1000" step="10" bind:value={animationDelay} />
+    <div class="slider-container">
+        <input class="checkbox-input" name="animate" type="checkbox" bind:checked={animate} />
+        <label class="checkbox-label" for="animate">Animate</label>
+        <label for="array-length">Array Length:</label>
+        <input name="array-length" type="range" min="10" max="100" step="1" bind:value={arrayLength} on:change={resetArray} />
+        <label for="animation-delay">Animation Delay:</label>
+        <input name="animation-delay" type="range" min="0" max="1000" step="10" bind:value={animationDelay} />
+    </div>
     <div class="button-container">
       <button on:click={startSorting} disabled={isSorting}>
         {isSorting ? 'Sorting...' : 'Start Sorting'}
@@ -145,6 +147,10 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+  }
+
+  .slider-container {
+    display: flex;
   }
   
   pre {
