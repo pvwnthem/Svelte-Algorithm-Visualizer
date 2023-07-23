@@ -42,7 +42,7 @@ export default class SelectionSort extends SortingAlgorithm {
         return array
     }
 
-    static async animate(array: number[], updateArray: (array: number[], index: number) => void, shouldStopSorting: () => boolean): Promise<number[]> {
+    static async animate(array: number[], updateArray: (array: number[], index: number) => void, shouldStopSorting: () => boolean, delay: number): Promise<number[]> {
   for (let i = 0; i < array.length; i++) {
     let min = i;
     for (let j = i + 1; j < array.length; j++) {
@@ -54,7 +54,7 @@ export default class SelectionSort extends SortingAlgorithm {
       const temp = array[i];
       array[i] = array[min];
       array[min] = temp;
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, delay));
       if (shouldStopSorting()) {
         return array;
       }

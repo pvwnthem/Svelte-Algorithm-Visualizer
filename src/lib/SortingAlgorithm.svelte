@@ -6,6 +6,7 @@
   import { onMount } from 'svelte';
 
   let arrayLength = 30;
+  let animationDelay = 100;
   let originalArray = generateRandomArray(arrayLength);
   let sortedArray = [];
   let currentIndex = 0;
@@ -18,7 +19,7 @@
     isSorting = true;
     currentIndex = 0;
     stopSorting = false;
-    sortedArray = animate ? await selectedAlgorithm.animate([...originalArray], updateArray, shouldStopSorting) : selectedAlgorithm.run([...originalArray]);
+    sortedArray = animate ? await selectedAlgorithm.animate([...originalArray], updateArray, shouldStopSorting, animationDelay) : selectedAlgorithm.run([...originalArray]);
     isSorting = false;
   }
 
@@ -63,6 +64,8 @@
     <label class="checkbox-label" for="animate">Animate</label>
     <label for="array-length">Array Length:</label>
     <input name="array-length" type="range" min="10" max="100" step="1" bind:value={arrayLength} on:change={resetArray} />
+    <label for="animation-delay">Animation Delay:</label>
+    <input name="animation-delay" type="range" min="0" max="1000" step="10" bind:value={animationDelay} />
     <div class="button-container">
       <button on:click={startSorting} disabled={isSorting}>
         {isSorting ? 'Sorting...' : 'Start Sorting'}

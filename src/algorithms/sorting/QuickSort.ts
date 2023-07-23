@@ -59,7 +59,7 @@ export default class QuickSort extends SortingAlgorithm {
           return [...QuickSort.run(left), pivot, ...QuickSort.run(right)];
     }
 
-    static async animate(array: number[], updateArray: (array: number[], startIndex: number, endIndex: number) => void, shouldStopSorting: () => boolean): Promise<number[]> {
+    static async animate(array: number[], updateArray: (array: number[], startIndex: number, endIndex: number) => void, shouldStopSorting: () => boolean, delay: number): Promise<number[]> {
     const quickSort = async (arr: number[], start: number, end: number): Promise<number[]> => {
         if (end - start <= 0) {
             return arr;
@@ -84,7 +84,7 @@ export default class QuickSort extends SortingAlgorithm {
                 arr[left] = arr[right];
                 arr[right] = temp;
                 updateArray(arr, left, right);
-                await new Promise(resolve => setTimeout(resolve, 100));
+                await new Promise(resolve => setTimeout(resolve, delay));
                 left++;
                 right--;
             }

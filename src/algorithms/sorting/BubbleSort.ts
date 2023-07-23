@@ -43,7 +43,7 @@ export default class BubbleSort extends SortingAlgorithm {
         }
         return array
     }
-    static async animate(array: number[], updateArray: (array: number[], index: number) => void, shouldStopSorting: () => boolean): Promise<number[]> {
+    static async animate(array: number[], updateArray: (array: number[], index: number) => void, shouldStopSorting: () => boolean, delay: number): Promise<number[]> {
         let swapped = true;
         let i = 0;
         while (swapped) {
@@ -54,7 +54,7 @@ export default class BubbleSort extends SortingAlgorithm {
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
                 swapped = true;
-                await new Promise(resolve => setTimeout(resolve, 100));
+                await new Promise(resolve => setTimeout(resolve, delay));
                 if (shouldStopSorting()) {
                 return array;
                 }

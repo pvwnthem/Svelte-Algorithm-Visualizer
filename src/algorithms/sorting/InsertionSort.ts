@@ -33,7 +33,7 @@ export default class InsertionSort extends SortingAlgorithm {
         return array
     }
 
-    static async animate(array: number[], updateArray: (array: number[], index: number) => void, shouldStopSorting: () => boolean): Promise<number[]> {
+    static async animate(array: number[], updateArray: (array: number[], index: number) => void, shouldStopSorting: () => boolean, delay: number): Promise<number[]> {
         for (let i = 1; i < array.length; i++) {
             const current = array[i]
             let j = i - 1
@@ -41,7 +41,7 @@ export default class InsertionSort extends SortingAlgorithm {
                 array[j + 1] = array[j]
                 updateArray(array, j + 1)
                 j--
-                await new Promise(resolve => setTimeout(resolve, 100));
+                await new Promise(resolve => setTimeout(resolve, delay));
                 if (shouldStopSorting()) {
                     return array;
                 }
