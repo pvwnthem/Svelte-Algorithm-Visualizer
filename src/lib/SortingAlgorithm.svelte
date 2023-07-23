@@ -77,7 +77,6 @@
         Reset Array
       </button>
     </div>
-    <h1>{selectedAlgorithm.name}</h1>
     <div class="array-container">
       {#each sortedArray as value, index}
         <div
